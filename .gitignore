@@ -1,0 +1,19 @@
+# Ignorar arquivos e pastas específicos do projeto
+.env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+.DS_Store
+.idea/
+.vscode/
+digito_teste.png
+.flake8
+
+# Datasets e arquivos pesados do projeto
+data/
+outputs/
