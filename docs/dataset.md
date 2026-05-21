@@ -115,11 +115,11 @@ $$\mathbf{v} \in \mathbb{Z}^{47.040.000} \xrightarrow{\text{reshape}(60000,\, 28
 
 O resultado é um tensor tridimensional $\mathcal{X}$, onde cada fatia $\mathcal{X}[i]$ é uma matriz $28 \times 28$ correspondente à $i$-ésima imagem:
 
-$$\mathcal{X}[i] = \begin{bmatrix} P_{1,1} & P_{1,2} & \cdots & P_{1,28} \\ P_{2,1} & P_{2,2} & \cdots & P_{2,28} \\ \vdots & \vdots & \ddots & \vdots \\ P_{28,1} & P_{28,2} & \cdots & P_{28,28} \end{bmatrix} \in \mathbb{Z}^{28 \times 28}$$
+$$\mathcal{X}[i] = \begin{bmatrix} P_{1,1} & P_{1,2} & \cdots & P_{1,28} \\\\ P_{2,1} & P_{2,2} & \cdots & P_{2,28} \\\\ \vdots & \vdots & \ddots & \vdots \\\\ P_{28,1} & P_{28,2} & \cdots & P_{28,28} \end{bmatrix} \in \mathbb{Z}^{28 \times 28}$$
 
 O tensor completo empilha todas as 60.000 matrizes:
 
-$$\mathcal{X} = \begin{bmatrix} \mathcal{X}[0] \\ \mathcal{X}[1] \\ \vdots \\ \mathcal{X}[59999] \end{bmatrix}, \quad \mathcal{X} \in \mathbb{Z}^{60000 \times 28 \times 28}$$
+$$\mathcal{X} = \begin{bmatrix} \mathcal{X}[0] \\\\ \mathcal{X}[1] \\\\ \vdots \\\\ \mathcal{X}[59999] \end{bmatrix}, \quad \mathcal{X} \in \mathbb{Z}^{60000 \times 28 \times 28}$$
 
 ### Correspondência entre rótulo e imagem
 
