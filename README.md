@@ -48,3 +48,4 @@ python main.py
 ## Sumário da Documentação
 
 - [Pipeline de Dados (Dataset)](docs/dataset.md): Descreve a decodificação dos arquivos binários `.ubyte` e a reestruturação dos dados em tensores tridimensionais dentro de `src/dataset.py`.
+- [Pré-processamento das Imagens](docs/preprocessing.md): Realiza a normalização e transformação das imagens para o formato adequado.
