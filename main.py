@@ -1,12 +1,14 @@
-import os
-
 from src.dataset import load_binary_mnist
+from src.preprocessing import preprocess
 
-directory = 'data'
 x_train, y_train = load_binary_mnist(
-    os.path.join(directory, 'train-images-idx3-ubyte'),
-    os.path.join(directory, 'train-labels-idx1-ubyte')
+    image_paths="data/train-images-idx3-ubyte",
+    label_paths="data/train-labels-idx1-ubyte",
 )
 
-print(f"Matriz de treino carregada! Formato original: {x_train.shape}")
-print(f"Vetor de rótulos carregado! Formato: {y_train.shape}")
+x_train = preprocess(x_train)
+
+# x_train.shape → (60000, 784)
+# x_train.dtype → float32
+# x_train.min()  → 0.0
+# x_train.max()  → 1.0
