@@ -29,11 +29,14 @@ A camada do *Dense* do **Keras** opera com a seguinte multiplicação:
 
 $$y = Wx + b, W \in \mathbb{R_{m \times n}}, x \in \mathbb{R_{n \times 1}}$$
 
-Para isso, $x$ precisa ser um vetor unidimensional (1D). Na multiplicação de matrizes, o número de colunas da matriz $A$ precisa ser igual ao número de linhas da matriz $B$. A imagem normalizada ainda tem forma $28 \times 28$, o *Flatten* reinterpreta a forma do tensor, colapsando as duas últimas dimensões (28, 28) em uma só (784). Tensor final: (60000, 784).
+Para isso, $x$ precisa ser um vetor unidimensional (1D). Na multiplicação de matrizes, o número de colunas da matriz $A$ precisa ser igual ao número de linhas da matriz $B$. A imagem normalizada ainda tem forma $28 \times 28$, o *Flatten* reinterpreta a forma do tensor, colapsando as duas últimas dimensões (28, 28) em uma só (784).
+
+- **Tensor inicial**: (60000, 28, 28).
+- **Tensor final**: (60000, 784).
 
 $$\mathcal{X[i]} \in \mathbb{R_{28 \times 28}} \xrightarrow{flatten} x_i \in \mathbb{R_{784}}$$
 
-A linha de código abaixo é responsável por fixar o valor da primeira dimensão na variável `n_samples`.
+A linha de código abaixo é responsável por fixar o valor da primeira dimensão (o número de imagens/amostras) na variável `n_samples`.
 
 ``` python
 # dimensões: ([0]60000, [1]784)
@@ -41,7 +44,7 @@ A linha de código abaixo é responsável por fixar o valor da primeira dimensã
 
 n_samples = images.shape[0] # n_samples = 60000
 ```
-O NumPy sabe que o tensor tem 47.040.000 elementos no total e que a primeira dimensão foi fixada em 60.000. Então ele resolve a divisão:
+O NumPy entende que o tensor tem 47.040.000 elementos no total e que a primeira dimensão foi fixada em 60.000. Ao passar o argumento -1, ele resolve a divisão automaticamente:
 
 ``` python
 return images.reshape(n_samples, -1)
@@ -49,7 +52,7 @@ return images.reshape(n_samples, -1)
 
 $$47.040.000 \div 60.000 = 784$$
 
-E substitui o -1 por 784 automaticamente. Isso é matematicamente equivalente a:
+O próprio motor do NumPy substitui o -1 por 784 em tempo de execução. Isso é matematicamente equivalente a fazer:
 
 ``` python
 images.reshape(60000, 784)
