@@ -77,9 +77,13 @@ def train_model(
     y_val: np.ndarray,
     epochs: int = 50,
     batch_size: int = 256,
+    callbacks: list = None,
 ) -> keras.callbacks.History:
 
-    callbacks = get_callbacks(patience=5)
+    local_callbacks = get_callbacks(patience=5)
+
+    if callbacks is not None:
+        local_callbacks.extend(callbacks)
 
     history = model.fit(
         x_train,
@@ -87,19 +91,8 @@ def train_model(
         epochs=epochs,
         batch_size=batch_size,
         validation_data=(x_val, y_val),
-        callbacks=callbacks,
+        callbacks=local_callbacks,
         verbose=1,
     )
 
     return history
-
-
-def count_parameters(model: keras.Model) -> dict[str, int]:
-
-    trainable = int(np.sum([np.prod(v.shape) for v in model.trainable_weights]))
-    non_trainable = int(np.sum([np.prod(v.shape) for v in model.non_trainable_weights]))
-    return {
-        "trainable": trainable,
-        "non_trainable": non_trainable,
-        "total": trainable + non_trainable,
-    }
